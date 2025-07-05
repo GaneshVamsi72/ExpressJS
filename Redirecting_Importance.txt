@@ -1,0 +1,45 @@
+Refer Chat GPT chat - https://chatgpt.com/share/685ed666-49f4-8010-a541-981b8c797c87
+
+✅ What is res.redirect()?
+res.redirect() is an Express.js method used to redirect the client (browser, tool, or API consumer) to a different URL.
+
+🧾 Syntax
+res.redirect([statusCode], url)
+-> statusCode (optional): HTTP redirect status (like 301 or 302)
+-> url: The destination URL (absolute or relative)
+
+🚦 Redirect Types & When to Use
+Temporary - 302	- Just for now - ✅ Form submissions, testing, logins
+Permanent -	301	- Moved forever - ✅ URL structure change, ⭐ SEO-friendly updates ⭐
+
+✍️ Examples
+➤ 1. Default Temporary Redirect (302)
+res.redirect('/home');
+
+Same as:
+res.redirect(302, '/home');
+
+➤ 2. Permanent Redirect (301)
+res.redirect(301, '/new-url');
+
+➤ 3. Redirect to External Website
+res.redirect('https://google.com');
+
+⚠️ Form Submission Warning
+1. Never use 301 after a POST (form) request.
+2. Always use 302 (default) to avoid:
+    Unexpected caching by browser
+    Login page skipping
+    Misbehavior in sessions
+
+🤯 Why Not Just Remove Old Routes? (Importance of 301)
+Result:
+1. Anyone visiting example.com/old-blog-post gets a 404 Page Not Found. 
+2. Google also sees: “Page gone!” and your SEO ranking dies. 
+3. People who bookmarked the old link get errors. 
+4. Your website breaks for them.
+
+301 Redirects are used because:
+1. Old URLs may be bookmarked, shared, or indexed by search engines.
+2. 301 tells the browser and search engines:
+"Update your records — this page lives here now."

@@ -1,0 +1,60 @@
+Chat GPT Reference -> https://chatgpt.com/share/6868be76-b318-8010-b50a-5343a08725f6
+
+Library v/s Framework:
+
+🔹 Library
+Definition: A collection of pre-written code you can call when needed.
+
+Control: You control the flow. You decide when and where to use the library.
+
+Example:
+
+JavaScript: Lodash, Axios
+Python: NumPy, Pandas
+
+Analogy: Like ordering food — you choose what you want.
+
+🔹 Framework
+Definition: A complete structure with rules and flow. You fit your code into it.
+
+Control: Framework controls the flow and calls your code.
+
+Example:
+
+JavaScript: React, Angular, Vue, Express.js
+Python: Django, Flask
+
+Analogy: Like a restaurant kitchen — you follow their process to make the food.
+
+🔄 Key Difference
+Library: You’re the boss.
+Framework: Framework is the boss (Inversion of Control).
+
+🔹 What is Express?
+Express is a web framework for Node.js used to build web applications and APIs easily and quickly.
+
+🔧 Key Features:
+✅ Handles HTTP requests (GET, POST, etc.)
+✅ Helps build servers and routes
+✅ Supports middleware (functions that run between the request and response)
+✅ Simple and minimalist but powerful
+✅ Widely used for REST APIs and backend services
+
+(Four Basic Things of Express: 1. Request Listening, 2. HTTP Request Parsing, 3. Request Routing, 4. Sending Response accordingly)
+
+Ports are just numbers (0–65535) used in networking to identify specific services or programs on a device.
+They help your computer decide where to send incoming data and which program should handle it.
+
+🔁 In Simple Words:
+Ports are like numbered mailboxes inside your device.
+Data comes with a port number, and your system delivers it to the right app or service using that number.
+
+
+✅ What is Nodemon?
+Nodemon is a utility that monitors for changes in your Node.js source code and automatically restarts the server. It's super useful during development.
+
+🔧 Install Nodemon Globally (recommended for CLI use): npm install -g nodemon
+This allows you to use nodemon from anywhere in your terminal.
+
+🚀 Run with Nodemon Directly:
+If installed globally: nodemon index.js

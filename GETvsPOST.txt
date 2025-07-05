@@ -1,0 +1,85 @@
+Reference: https://chatgpt.com/share/68530726-3ee4-8010-8fde-c201ea81fa0d
+
+-----------------------------------------------------------------------------------------------------------------------
+
+🔹 What is a Request?
+In web development, when a client (like a browser) wants to communicate with a server, it sends an HTTP Request.
+There are different types of requests, and the most commonly used are GET and POST.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+✅ GET Request
+A GET request is used to retrieve data from the server.
+
+🔸 Characteristics:
+1. Data is sent in the URL (as query parameters) (String Data).
+Example: /search?query=Ramayana
+2. It is visible in the address bar.
+3. It is not secure for sending sensitive data.
+4. Can be cached by the browser.
+5. Has length limitations (URL size limit).
+6. Used for reading data, not modifying anything.
+
+🔸 Example in Express.js:
+app.get('/search', (req, res) => {
+    const { query } = req.query;
+    res.send(`You searched for ${query}`);
+});
+
+-----------------------------------------------------------------------------------------------------------------------
+
+✅ POST Request
+A POST request is used to send data to the server, often to create or update something.
+
+🔸 Characteristics:
+1. Data is sent in the body of the request (not visible in the URL) (Any Type of Data).
+2. Suitable for sensitive or large data.
+3. Cannot be cached.
+4. Has no length limitations.
+5. Mostly used for form submissions, logins, etc.
+6. Used for writing data.
+
+🔸 Example in Express.js:
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    res.send(`Logging in user: ${username}`);
+});
+
+⚠️ To use req.body, you need to use middleware:
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+WHY ??? - Why do we need express.urlencoded() and express.json() middleware to use req.body in a POST request?
+
+🔍 The Real Reason:
+🚧 By default, Express doesn't know how to parse the body of incoming requests.
+
+When a POST request sends data (like from a form or a JSON payload), that data is placed in the body of the HTTP request — not in the URL.
+But:
+1. That body is just raw data (a stream of bytes).
+2. Express won’t parse it automatically unless you tell it how to
+
+🧰 Solution: Use Middleware
+Middleware functions in Express sit in between the request and response.
+
+Two special ones are:
+
+✅ express.urlencoded({ extended: true })
+1. Parses data sent by HTML forms (like <form method="POST">)
+2. Converts it into a usable req.body object.
+3. extended: true allows for nested objects.
+
+✅ express.json()
+1. Parses JSON data sent via tools like fetch(), Postman, or modern frontend apps (React, etc.).
+2. Converts JSON into req.body.
+
+🧪 Without Middlewares :
+app.post('/submit', (req, res) => {
+    console.log(req.body); // ❌ undefined
+});
+
+📦 Analogy:
+Think of the request body as a sealed package delivered to your house.
+Express receives the package but doesn’t open it by default.
+You need to install a helper (middleware) to open it and extract the contents.
