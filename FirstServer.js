@@ -38,10 +38,25 @@ app.use(PATH, middlewareFunction)
 */
 
 // Global Middleware = *Entry checkpoint*
+/*
 app.use((req, res, next) => {
     console.log("Request received");
     console.log(`[${req.method}] ${req.url}`);
     next(); // Pass control to the next middleware or route
+});
+*/
+
+// Improved Global Middleware that is mentioned above
+// Logger
+app.use((req, res, next) => {
+    const start = Date.now();
+
+    res.on('finish', () => {
+        const timeTaken = Date.now() - start;
+        console.log(`${req.method} ${req.url} - ${timeTaken}ms`);
+    });
+
+    next();
 });
 
 /*

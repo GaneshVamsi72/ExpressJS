@@ -1,0 +1,47 @@
+🔹 What Are Middlewares in Express?
+A middleware is a function that runs between the request coming from the client and the final response sent by the server.
+-> Think of it like a checkpoint through which every request passes.
+
+Formal Definition:-
+Middleware functions are functions that have access to req, res, and next and can modify or handle the request before passing it forward.
+
+📌 Middleware Function Structure
+function middleware(req, res, next) {
+    // Do something here
+    next(); // pass control to next middleware or route
+}
+
+req → incoming request
+res → outgoing response
+next() → tells Express to move to the next middleware/route
+
+🔥 Why Are Middlewares Used?
+✔ Logging - Track which routes are being called.
+✔ Authentication - Check if the user is logged in.
+✔ Body Parsing - Convert JSON data into req.body.
+✔ Validation - Ensure user inputs are correct.
+✔ Error Handling - Catch errors and respond properly.
+✔ Serving Static Files - Handle images/CSS/JS without writing routes.
+
+Visit: https://blog.bitsrc.io/5-express-middleware-libraries-every-developer-should-know-94e2728f7503
+
+app.use([path,] callback [, callback...]) -> Mounts the specified middleware function or functions at the specified path: the middleware function is executed when the base of the requested path matches path.
+
+path -> Default: '/'
+callback -> One or more callback functions. 
+Accepted formats:
+1. A single middleware function.
+2. Multiple middleware functions separated by commas.
+3. An array of middleware functions.
+4. A combination of the above.
+
+Middleware for Specific Routes:-
+    const checkUser = (req, res, next) => {
+        const user = false;
+        if (!user) return res.send("Access Denied!");
+        next();
+    };
+
+    app.use('/admin', checkUser);
+
+⭐ Now any route starting with /admin will pass through checkUser.
