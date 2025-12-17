@@ -100,7 +100,7 @@ app.get('/users/:id', catchAsync(async (req, res, next) => {
 }));
 
 // 404 handler for unknown routes
-app.all('*', (req, res, next) => {
+app.use((req, res, next) => {
     // If route not found, forward an AppError to the error middleware
     next(new AppError(`Can't find ${req.url} on this server`, 404));
 });
